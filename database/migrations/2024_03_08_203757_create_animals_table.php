@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('animals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
             $table->integer('age');
-            $table->integer('gender');
-            $table->string('photo')->nullable();
-            $table->integer('role')->default(2);
-            $table->foreignId('shift');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('photo');
+            $table->string('gender');
+            $table->foreignId('specie_id')->constrained();
+            $table->foreignId('zone_id')->constrained();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('animals');
     }
 };
