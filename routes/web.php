@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SpeciesController;
+use App\Http\Controllers\AnimalsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +48,10 @@ Route::middleware('auth')->group(function(){
         Route::get('/delete/{id}', [UserController::class, 'delete'])->name('users.delete'); //eliminar usuario
     });
 
+    //SPECIES Routes
     Route::prefix('species')->group(function () {
         Route::get('/all', [SpeciesController::class, 'all'])->name('species'); //obtener vista con todas las especies
+
         Route::view('/create', 'species.create')->name('species.create'); //obtener vista
         Route::post('/create', [SpeciesController::class, 'create'])->name('species.create'); //enviar datos para crear
 
@@ -58,5 +61,29 @@ Route::middleware('auth')->group(function(){
         Route::get('/delete/{id}', [SpeciesController::class, 'delete'])->name('species.delete'); //eliminar especie
     });
 
+    //ZONES Routes
+    Route::prefix('zones')->group(function (){
+        Route::get('/all', [ZonesController::class, 'all'])->name('zones'); //obtener vista con todas las zonas
+
+        Route::view('/create', 'zones.create')->name('zones.create'); //obtener vista
+        Route::post('/create', [ZonesController::class, 'create'])->name('zones.create'); //enviar datos para crear
+
+        Route::get('/edit/{id}', [ZonesController::class, 'edit'])->name('zones.edit'); //obtener vista para editar zona
+        Route::put('/edit/{id}', [ZonesController::class, 'update'])->name('zones.update'); //enviar datos para actualizar
+
+        Route::get('/delete/{id}', [ZonesController::class, 'delete'])->name('zones.delete'); //eliminar zona
+    });
+
     //ANIMALS Routes
+    Route::prefix('animals')->group(function () {
+        Route::get('/all', [AnimalsController::class, 'all'])->name('animals'); //obtener vista
+
+        Route::view('/create', 'animals.create')->name('animals.create'); //obtener vista
+        Route::post('/create', [AnimalsController::class, 'create'])->name('animals.create'); //enviar datos para registrar animal
+
+        Route::get('/edit/{id}', [AnimalsController::Class, 'edit'])->name('animals.edit'); //obtener vista
+        Route::put('/edit/{id}', [AnimalsController::class, 'update'])->name('animals.update'); //enviar datos para editar animal
+
+        Route::get('/delete/{id}', [AnimalsController::class, 'delete'])->name('animals.delete'); //eliminar animal
+    });
 });
