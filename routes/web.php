@@ -39,7 +39,6 @@ Route::middleware('auth')->group(function(){
     //USER Routes
     Route::prefix('users')->group(function (){
         Route::get('/all', [UserController::class, 'all'])->name('users'); //obtener vista con todos los usuarios
-
         Route::view('/register', 'users.register')->name('register'); //obtener vista
         Route::post('/register', [UserController::class, 'register'])->name('register'); //enviar datos para registrarse
 
@@ -81,7 +80,7 @@ Route::middleware('auth')->group(function(){
 
         Route::view('/create', 'animals.create')->name('animals.create'); //obtener vista
         Route::post('/create', [AnimalsController::class, 'create'])->name('animals.create'); //enviar datos para registrar animal
-        
+
         Route::get('/edit/{id}', [AnimalsController::Class, 'edit'])->name('animals.edit'); //obtener vista
         Route::put('/edit/{id}', [AnimalsController::class, 'update'])->name('animals.update'); //enviar datos para editar animal
 

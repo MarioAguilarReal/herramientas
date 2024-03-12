@@ -15,7 +15,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('index');
+            return redirect()->route('index');
         }
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
@@ -28,34 +28,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
-    }
-
-    public function register(Request $request)
-    {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->role = $request->role;
-        $user->age = $request->age;
-        $user->photo = $request->photo;
-        $user->shift = $request->shift;
-        $user->save();
-        return redirect('/');
-    }
-
-    public function update(Request $request)
-    {
-        $user = User::find(Auth::id());
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->role = $request->role;
-        $user->age = $request->age;
-        $user->photo = $request->photo;
-        $user->shift = $request->shift;
-        $user->save();
-        return redirect('/');
+        return redirect()->route('login');
     }
 }
