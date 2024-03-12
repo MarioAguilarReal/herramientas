@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer('age');
             $table->string('photo');
             $table->string('gender');
-            $table->foreignId('specie_id')->constrained();
-            $table->foreignId('zone_id')->constrained();
+            $table->foreignId('specie_id')->constrained()->nullable();
+            $table->foreignId('zone_id')->constrained()->nullable();
             $table->timestamps();
         });
     }
