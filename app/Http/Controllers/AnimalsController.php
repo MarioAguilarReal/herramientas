@@ -46,6 +46,7 @@ class AnimalsController extends Controller
 
 
         $animal->save();
+        return redirect()->route('animals');
     }
 
     public function edit(Request $request)
@@ -64,6 +65,8 @@ class AnimalsController extends Controller
     public function delete($id)
     {
         $animal = Animal::findOrFail($id);
+        //borro la imagen de la carpeta public/animals
+        unlink(public_path('animals/'.$animal->photo));
         $animal->delete();
         return redirect()->route('animals');
     }

@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function(){
 
     //USER Routes
     Route::prefix('users')->group(function (){
-        Route::get('/all', [UserController::class, 'all'])->name('users'); //obtener vista con todos los usuarios
+        Route::get('/', [UserController::class, 'all'])->name('users'); //obtener vista con todos los usuarios
         Route::view('/register', 'users.register')->name('register'); //obtener vista
         Route::post('/register', [UserController::class, 'register'])->name('register'); //enviar datos para registrarse
 
@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function(){
 
     //SPECIES Routes
     Route::prefix('species')->group(function () {
-        Route::get('/all', [SpeciesController::class, 'all'])->name('species'); //obtener vista con todas las especies
+        Route::get('/', [SpeciesController::class, 'all'])->name('species'); //obtener vista con todas las especies
 
         Route::view('/create', 'species.create')->name('species.create'); //obtener vista
         Route::post('/create', [SpeciesController::class, 'create'])->name('species.create'); //enviar datos para crear
@@ -64,7 +64,7 @@ Route::middleware('auth')->group(function(){
 
     //ZONES Routes
     Route::prefix('zones')->group(function (){
-        Route::get('/all', [ZonesController::class, 'all'])->name('zones'); //obtener vista con todas las zonas
+        Route::get('/', [ZonesController::class, 'all'])->name('zones'); //obtener vista con todas las zonas
 
         Route::view('/create', 'zones.create')->name('zones.create'); //obtener vista
         Route::post('/create', [ZonesController::class, 'create'])->name('zones.create'); //enviar datos para crear
@@ -76,14 +76,14 @@ Route::middleware('auth')->group(function(){
     });
 
     //ANIMALS Routes
-    Route::prefix('animals')->group(function () {
-        Route::get('/all', [AnimalsController::class, 'all'])->name('animals'); //obtener vista
+    Route::prefix('animals')->group(function (){
+        Route::get('/all', [AnimalsController::class, 'all'])->name('animals'); //obtener vista con todos los animales
 
         Route::get('/create', [AnimalsController::class, 'new'])->name('animals.create'); //obtener vista
-        Route::post('/create', [AnimalsController::class, 'create'])->name('animals.create'); //enviar datos para registrar animal
+        Route::post('/create', [AnimalsController::class, 'create'])->name('animals.create'); //enviar datos para crear
 
-        Route::get('/edit/{id}', [AnimalsController::Class, 'edit'])->name('animals.edit'); //obtener vista
-        Route::put('/edit/{id}', [AnimalsController::class, 'update'])->name('animals.update'); //enviar datos para editar animal
+        Route::get('/edit/{id}', [AnimalsController::class, 'edit'])->name('animals.edit'); //obtener vista para editar animal
+        Route::put('/edit/{id}', [AnimalsController::class, 'update'])->name('animals.update'); //enviar datos para actualizar
 
         Route::get('/delete/{id}', [AnimalsController::class, 'delete'])->name('animals.delete'); //eliminar animal
     });
