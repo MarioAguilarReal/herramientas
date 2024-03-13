@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\AnimalsController;
+use App\Http\Controllers\ZonesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,7 +79,7 @@ Route::middleware('auth')->group(function(){
     Route::prefix('animals')->group(function () {
         Route::get('/all', [AnimalsController::class, 'all'])->name('animals'); //obtener vista
 
-        Route::view('/create', 'animals.create')->name('animals.create'); //obtener vista
+        Route::get('/create', [AnimalsController::class, 'new'])->name('animals.create'); //obtener vista
         Route::post('/create', [AnimalsController::class, 'create'])->name('animals.create'); //enviar datos para registrar animal
 
         Route::get('/edit/{id}', [AnimalsController::Class, 'edit'])->name('animals.edit'); //obtener vista

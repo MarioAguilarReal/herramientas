@@ -14,6 +14,8 @@
         <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
         <a href="{{ route('users') }}" class="btn btn-primary">Users</a>
         <a href="{{ route('species') }}" class="btn btn-primary">Species</a>
+        <a href="{{ route('zones') }}" class="btn btn-primary">Zones</a>
+        <a href="{{ route('animals') }}" class="btn btn-primary">Animals</a>
         <a href="{{ route('logout') }}" class="btn btn-secondary">Logout</a>
       </div>
     </div>

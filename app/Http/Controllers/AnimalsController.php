@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Animal;
+use App\Models\Specie;
+use App\Models\Zone;
 
 class AnimalsController extends Controller
 {
@@ -13,17 +15,24 @@ class AnimalsController extends Controller
         $animals = Animal::all();
         return view('animals.all', ['animals' => $animals]);
     }
+
+    public function new(){
+        //i want to get all the species and zones to show them in the form
+        $species = Specie::all();
+        $zones = Zone::all();
+        return view('animals.create', compact('species', 'zones'));
+    }
     public function create(Request $request)
     {
         $animal = new Animal();
         $animal->name = $request->name;
         $animal->age = $request->age;
-        $animal->photo = $request->photo;
         $animal->gender = $request->gender;
         $animal->specie_id = $request->specie_id;
         $animal->zone_id = $request->zone_id;
+
+        dd($request->photo->store('public'));
         $animal->save();
-        return redirect('/');
     }
 
     public function edit(Request $request)

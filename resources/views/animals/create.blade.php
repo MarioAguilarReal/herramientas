@@ -3,59 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <title>Register Animal</title>
 </head>
 <body>
-    <!-- create a form to register animals-->
-    <form action="{{ route('animals.create') }}" method="post">
-        @csrf
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <h1>Register Animal</h1>
+            <form action="{{ route('animals.create') }}" method="POST" enctype="multipart/form-data">
+              @csrf
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name">
+              </div>
+              <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" class="form-control" id="age" name="age">
+              </div>
+              <div class="mb-3">
+                <label for="photo" class="form-label">Photo</label>
+                <input type="file" class="form-control" id="photo" name="photo">
+              </div>
+              <div class="mb-3">
+                <label for="gender" class="form-label">Gender</label>
+                <select class="form-select" name="gender" id="gender">
+                  <option value="1">Male</option>
+                  <option value="2">Female</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="specie_id" class="form-label">Specie</label>
+                <select class="form-select" name="specie_id" id="specie_id">
+                  @foreach ($species as $specie)
+                    <option value="{{ $specie->id }}">{{ $specie->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="zone_id" class="form-label">Zone</label>
+                <select class="form-select" name="zone_id" id="zone_id">
+                  @foreach ($zones as $zone)
+                    <option value="{{ $zone->id }}">{{ $zone->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+          </div>
         </div>
-        <div>
-            <label for="age">Age</label>
-            <input type="number" name="age" id="age">
-        </div>
-        <div>
-            <label for="gender">Gender</label>
-            <select name="gender" id="gender">
-                <option value="" disabled selected>Select Gender</option>
-                <option value="0">Male</option>
-                <option value="1">Female</option>
-                <option value="2">Unknown</option>
-            </select>
-        </div>
-        <div>
-            <label for="specie">Specie</label>
-            <select name="specie_id" id="specie_id">
-                <option value="" disabled selected>Specie</option>
-                <option value="0">Specie 1</option>
-                <option value="1">Specie 2</option>
-                <option value="2">Specie 3</option>
-                <option value="3">Specie 4</option>
-                <option value="4">Specie 5</option>
-                <option value="5">Specie 6</option>
-            </select>
-        </div>
-        <div>
-            <label for="zone">Zone</label>
-            <select name="zone_id" id="zone_id">
-                <option value="" disabled selected>Zone</option>
-                <option value="0">Specie 1</option>
-                <option value="1">Specie 2</option>
-                <option value="2">Specie 3</option>
-                <option value="3">Specie 4</option>
-                <option value="4">Specie 5</option>
-                <option value="5">Specie 6</option>
-            </select>
-        </div>
-        <div>
-            <label for="photo">Photo</label>
-            <input type="text" name="photo" id="photo">
-        </div>
-        <button type="submit">Add Animal</button>
-    </form>
-
+        <a class="btn btn-primary" href="{{ route('animals') }}">Cancel</a>
+      </div>
 </body>
 </html>
