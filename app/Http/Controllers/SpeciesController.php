@@ -17,6 +17,7 @@ class SpeciesController extends Controller
     {
         $specie = new Specie();
         $specie->name = $request->name;
+        $specie->description = $request->description;
         $specie->save();
         return redirect()->route('species');
     }

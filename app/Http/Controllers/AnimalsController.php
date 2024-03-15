@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Animal;
 use App\Models\Specie;
@@ -52,23 +53,48 @@ class AnimalsController extends Controller
     public function edit(Request $request)
     {
         $animal = Animal::find($request->id);
-        return view('animals.edit', compact('animal'));
+        $species = Specie::all();
+        $zones = Zone::all();
+        return view('animals.edit', compact('animal', 'species', 'zones'));
     }
 
     public function update(Request $request, $id)
     {
+        
         $animal = Animal::findOrFail($id);
-        $animal->update($request->all());
+
+        // Verifica si se ha cargado una nueva imagen
+        if ($request->hasFile('photo')) {
+            // Elimina la imagen anterior si existe
+            if ($animal->photo) {
+                if(file_exists(public_path('animals/' . $animal->photo))){
+                    unlink(public_path('animals/' . $animal->photo));
+                }
+            }
+
+            // Guarda la nueva imagen
+            $imageName = time().'.'.$request->photo->extension();
+            $request->photo->move(public_path('animals'), $imageName);
+
+            // Actualiza la propiedad 'photo' del animal con el nombre de la nueva imagen
+            $animal->photo = $imageName;
+        }
+
+        // Actualiza el resto de los datos del animal
+        $animal->fill($request->except('photo'))->save();
+
         return redirect()->route('animals');
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        $animal = Animal::findOrFail($id);
-        //borro la imagen de la carpeta public/animals
-        unlink(public_path('animals/'.$animal->photo));
+        $animal = Animal::find($request->id);
+        if ($animal->photo) {
+            if(file_exists(public_path('animals/' . $animal->photo))){
+                unlink(public_path('animals/' . $animal->photo));
+            }
+        }
         $animal->delete();
         return redirect()->route('animals');
     }
-
 }
