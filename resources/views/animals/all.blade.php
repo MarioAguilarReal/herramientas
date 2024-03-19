@@ -1,51 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>All Animals</title>
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-          <div class="col-md-6 offset-md-3">
-            <h1>All Animals</h1>
-            <a href="{{ route('animals.create') }}" class="btn btn-primary">Create</a>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                  <th>Specie</th>
-                  <th>Zone</th>
-                  <th>Photo</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($animals as $animal)
-                  <tr>
-                    <td>{{ $animal->id }}</td>
-                    <td>{{ $animal->name }}</td>
-                    <td>{{ $animal->age }}</td>
-                    <td>{{ $animal->gender }}</td>
-                    <td>{{ $animal->specie->name }}</td>
-                    <td>{{ $animal->zone->name }}</td>
-                    <td><img src="{{ $animal->photo }}" alt="{{ $animal->name }}" width="50"></td>
-                    <td>
-                      <a href="{{ route('animals.edit', $animal->id) }}" class="btn btn-primary">Edit</a>
-                      <a href="{{ route('animals.delete', $animal->id) }}" class="btn btn-danger">Delete</a>
-                    </td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
+@extends('index')
+
+@section('styles')
+  <link rel="stylesheet" href="{{ asset('css/animals/all.css') }}">
+@endsection
+
+@section('content')
+<div class="container">
+  <div class="header">
+    <div class="item-nav">
+      <h3>Animales</h3>
+    </div>
+    <div class="item-nav">
+      <a href="{{ route('animals.create') }}" class="btn btn-primary">Crear</a>
+    </div>
+  </div>
+  <div class="animals-container">
+    @foreach($animals as $animal)
+      <div class="animal-card">
+        <div class="animal-card-header">
+          <img src="{{ asset('animals/' . $animal->photo) }}" alt="{{ $animal->name }}">
         </div>
-        <a class="btn btn-primary" href="{{ route('index') }}">Home</a>
+        <div class="animal-card-body">
+          <h4>{{ $animal->name }}</h4>
+          <p>{{ $animal->age }} Years old</p>
+          <p>{{ $animal->gender }}</p>
+          <p>{{ $animal->specie->name }}</p>
+          <p>{{ $animal->zone->name }}</p>
+        </div>
+        <div class="animal-card-footer">
+          <a href="{{ route('animals.edit', $animal->id) }}" class="btn btn-warning">Editar</a>
+          <a href="{{ route('animals.delete', $animal->id) }}" class="btn btn-danger">Eliminar</a>
+        </div>
       </div>
-</body>
-</html>
+    @endforeach
+  </div>
+</div>
+@endsection

@@ -15,6 +15,20 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+            'age' => 'required',
+            'gender' => 'required',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'shift' => 'required',
+        ]);
+
+        $imageName = time().$request->name.'.'.$request->photo->extension();
+        $request->photo->move(public_path('profilePictures'), $imageName);
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -22,7 +36,7 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->age = $request->age;
         $user->gender = $request->gender;
-        $user->photo = $request->photo;
+        $user->photo = $imageName;
         $user->shift = $request->shift;
         $user->save();
         return redirect('/');
@@ -38,8 +52,27 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $user = User::findOrFail($id);
-        $user->update($request->all());
+        if($user->photo !== null){
+            unlink(public_path('profilePictures/'.$user->photo));
+        }
+
+        if($request->photo != null){
+            $imageName = time().$request->name.'.'.$request->photo->extension();
+            $request->photo->move(public_path('profilePictures'), $imageName);
+            $user->photo = $imageName;
+        }
+
+        $user->name = $request->name;
+        $user->age = $request->age;
+        $user->gender = $request->gender;
+        $user->role = $request->role;
+        $user->shift = $request->shift;
+        $user->save();
         return redirect()->route('users');
     }
 

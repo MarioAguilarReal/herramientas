@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <title>Edit User</title>
-</head>
-<body>
+@extends('index')
+@section('content')
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <h1>Edit User</h1>
-        <form action="{{ route('update-user', ['id' => $user->id]) }}" method="post">
+        <form action="{{ route('update-user', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="mb-3">
@@ -23,8 +16,10 @@
             <input type="number" class="form-control" name="age" id="age" value="{{ $user->age }}">
           </div>
           <div class="mb-3">
-            <label for="photo" class="form-label">Photo</label>
-            <input type="file" class="form-control" name="photo" id="photo" value="{{ $user->photo }}">
+            <label for="photo" class="form-label">Current Photo</label><br>
+            <img src="{{ asset('profilePictures/' . $user->photo) }}" alt="Current Photo" style="max-width: 150px; max-height: 150px;"><br><br>
+            <label for="photo" class="form-label">New Photo</label>
+            <input type="file" class="form-control" name="photo" id="photo">
           </div>
           <div class="mb-3">
             <label for="gender" class="form-label">Gender</label>
@@ -53,10 +48,8 @@
             <button type="submit" class="btn btn-primary">Update</button>
             <a href="{{ route('users') }}" class="btn btn-secondary">Cancel</a>
           </div>
-
         </form>
       </div>
     <div>
-
-</body>
-</html>
+  </div>
+@endsection

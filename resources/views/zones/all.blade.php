@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>All zones</title>
-</head>
-<body>
+@extends('index')
+@section('content')
 <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
@@ -40,5 +33,4 @@
   </div>
   <a href="{{ route('index') }}" class="btn btn-secondary">Back</a>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection

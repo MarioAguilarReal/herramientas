@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\AnimalsController;
 use App\Http\Controllers\ZonesController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout'); //cerrar sesión
 
     //HOME Routes
-    route::view('/', 'index')->name('index'); //obtener vista
+    Route::get('/', [DashboardController::class, 'statistics'])->name('index'); //obtener vista con todos los usuarios
 
     //USER Routes
     Route::prefix('users')->group(function (){

@@ -1,20 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edite Zone</title>
-</head>
-<body>
-    <h1>Edit zones</h1>
-    <form action="{{ route('zones.update', $zone->id) }}" method="post">
-        @csrf
-        @method('put')
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="{{ $zone->name }}">
-        </div>
-        <button type="submit">Edit Zone</button>
-    </form>
-</body>
-</html>
+@extends('index')
+@section('content')
+    <div class="container">
+        <h1>Editar zona</h1>
+        <form action="{{ route('zones.update', $zone->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ $zone->name }}">
+            </div>
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <textarea class="form-control" id="description" name="description" rows="3">{{ $zone->description }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+    </div>
+@endsection
