@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-  <title>Register</title>
-</head>
-<body>
+@extends('index')
+@section('content')
     <div class="container">
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <h1>Register</h1>
-          <form action="{{ route('register') }}" method="post">
+          <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
@@ -65,5 +57,4 @@
         </div>
       </div>
     </div>
-</body>
-</html>
+@endsection

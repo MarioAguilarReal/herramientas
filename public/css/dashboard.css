@@ -1,0 +1,24 @@
+.admin-page{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  background-color: #f4f4f4;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+.side-menu{
+  height: 100vh;
+  box-shadow: 2px 0px 10px rgba(0,0,0,0.9);
+  z-index: 1;
+  /* width using vw */
+  width: 15vw;
+}
+.admin-page .main-content{
+  height: 100vh;
+  width: 85vw;
+  overflow: auto;
+  padding-left: 20px;
+}
+
