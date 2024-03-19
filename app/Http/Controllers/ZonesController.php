@@ -17,6 +17,7 @@ class ZonesController extends Controller
     {
         $zone = new Zone();
         $zone->name = $request->name;
+        $zone->description = $request->description;
         $zone->save();
         return redirect()->route('zones');
     }
