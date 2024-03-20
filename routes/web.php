@@ -7,6 +7,7 @@ use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\AnimalsController;
 use App\Http\Controllers\ZonesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\apiZooController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,4 +89,8 @@ Route::middleware('auth')->group(function(){
 
         Route::get('/delete/{id}', [AnimalsController::class, 'delete'])->name('animals.delete'); //eliminar animal
     });
+
+
+    //Animal Catalog from API
+    Route::get('/apiZoo', [apiZooController::class, 'fetchDataFromApi'])->name('apiZoo');
 });
