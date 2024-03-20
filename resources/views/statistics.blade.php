@@ -12,8 +12,5 @@
                 <p>There are {{ $zones }} zones</p>
             </div>
         </div>
-        <div class="img" style="height: 800px">
-            <img src="{{ asset('map/zooMap.jpg') }}" alt="map" style="height: 100%">
-        </div>
     </div>
 @endsection
