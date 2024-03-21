@@ -27,7 +27,6 @@
             <input type="password" class="form-control" name="password" id="password">
           </div>
           <div class="mb-3 form-check">
-            <!-- I dont have an account -->
             <a href="{{ route('register') }}">I don't have an account</a>
           </div>
           <button type="submit" class="login-btn">Login</button>

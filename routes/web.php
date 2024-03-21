@@ -42,9 +42,7 @@ Route::middleware('auth')->group(function(){
 
     //USER Routes
     Route::prefix('users')->group(function (){
-        Route::get('/', [UserController::class, 'all'])->name('users'); //obtener vista con todos los usuarios
-        Route::view('/register', 'users.register')->name('register'); //obtener vista
-        Route::post('/register', [UserController::class, 'register'])->name('register'); //enviar datos para registrarse
+        Route::get('/', [UserController::class, 'all'])->name('users'); //obtener vista con todos los usuario
 
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit'); //obtener vista para editar usuario
         Route::put('/edit/{id}', [UserController::class, 'update'])->name('update-user'); //enviar datos para actualizar
