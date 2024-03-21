@@ -11,9 +11,12 @@ class DashboardController extends Controller
 {
     public function statistics()
     {
-        $species = Specie::count();
-        $zones = Zone::count();
-        $animals = Animal::count();
+        //get all species
+        $species = Specie::all();
+        //get all zones
+        $zones = Zone::all();
+        //get all animals
+        $animals = Animal::all();
         return view('statistics', compact('species', 'zones', 'animals'));
     }
 }
