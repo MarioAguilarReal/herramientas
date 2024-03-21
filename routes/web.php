@@ -29,7 +29,8 @@ Route::get('/', function () {
 //SESSION Routes
 Route::view('/login', 'login')->name('login'); //obtener vista
 Route::post('/login', [LoginController::class, 'login'])->name('login'); //enviar datos para logearse
-
+Route::view('/register', 'users.register')->name('register'); //obtener vista
+Route::post('/register', [UserController::class, 'register'])->name('register');
 //PRIVATE ROUTES
 Route::middleware('auth')->group(function(){
 
