@@ -32,13 +32,6 @@
             Animals
           </a>
         </li>
-        <li class="nav-item">
-          <a href="{{route('animals.create')}}" class="nav-link text-white {{request()->is('animals/create') ? 'active' : ''}}">
-            <svg class="bi me-2" width="16" height="16"><use xlink:href="/animals/all"></use></svg>
-            New Animal
-          </a>
-          <hr />
-        </li>
         <li>
           <a href="{{route('zones')}}" class="nav-link text-white {{request()->is('zones') ? 'active' : ''}}" >
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
@@ -46,22 +39,9 @@
           </a>
         </li>
         <li>
-          <a href="{{route('zones.create')}}" class="nav-link text-white {{request()->is('zones/create') ? 'active' : ''}}" >
-            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-            New Zone
-          </a>
-          <hr />
-        </li>
-        <li>
           <a href="{{route('species')}}" class="nav-link text-white {{request()->is('species') ? 'active' : ''}}" >
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
             Species
-          </a>
-        </li>
-        <li>
-          <a href="{{route('species.create')}}" class="nav-link text-white {{request()->is('species/create') ? 'active' : ''}}" >
-            <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-            New Specie
           </a>
           <hr />
         </li>
@@ -70,12 +50,14 @@
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
             Users
           </a>
+          <hr />
         </li>
         <li>
-          <a href="{{route('register')}}" class="nav-link text-white {{request()->is('users/register') ? 'active' : ''}}" >
+          <a href="{{route('apiZoo')}}" class="nav-link text-white {{request()->is('apiZoo') ? 'active' : ''}}" >
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-            New User
+            Get more Animals
           </a>
+          <hr />
         </li>
       </ul>
       <hr>

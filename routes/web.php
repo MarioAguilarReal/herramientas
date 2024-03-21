@@ -93,4 +93,5 @@ Route::middleware('auth')->group(function(){
 
     //Animal Catalog from API
     Route::get('/apiZoo', [apiZooController::class, 'fetchDataFromApi'])->name('apiZoo');
+    Route::get('/apiZoo/add/{id}', [apiZooController::class, 'addAnimal'])->name('api.add');
 });
