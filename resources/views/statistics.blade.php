@@ -77,8 +77,8 @@
                 </div>
             <div class="bottom"></div>
         </div>
-        <div class="img" style="height: 800px">
-            <img src="{{ asset('map/zooMap.jpg') }}" alt="map" style="height: 100%">
+        <div class="img">
+            <img src="{{ asset('map/zooMap.jpg') }}" alt="map">
         </div>
     </div>
 @endsection
