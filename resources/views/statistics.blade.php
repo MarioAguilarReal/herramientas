@@ -77,5 +77,8 @@
                 </div>
             <div class="bottom"></div>
         </div>
+        <div class="img">
+            <img src="{{ asset('map/zooMap.jpg') }}" alt="map">
+        </div>
     </div>
 @endsection
