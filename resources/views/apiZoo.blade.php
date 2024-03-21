@@ -19,7 +19,7 @@
                     <p class="card-text">{{ $animal['animal_type'] }}</p>
                 </div>
                 <div class="animal-card-footer">
-                    <a href="#" class="btn btn-primary">Ver más</a>
+                    <a href="{{route('api.add', $animal['id'])}}" class="btn btn-primary">Get to our Zoo</a>
                 </div>
             </div>
         @endforeach
